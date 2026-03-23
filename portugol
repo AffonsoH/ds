@@ -1,0 +1,40 @@
+programa {
+  inclua biblioteca Util --> u
+  funcao inicio() {
+    cadeia inventario[2] = {"bomba", "escudo"}
+    cadeia nome
+    cadeia itqvaiusar
+    escreva ("Digite o nome do seu herói: ")
+    leia (nome)
+    inteiro hp = 100
+    inteiro hpboss = 250
+    faca{
+     escreva ("\nDigite Z para atacar, X para se curar, C para abrir inventário, e V para usar uma skill especial: ")
+     cadeia proxacao
+     leia (proxacao)
+     se (proxacao == "z" ou proxacao == "Z"){
+      escreva ("Rolando dado... ", "\n")
+      inteiro dado = u.sorteia(1, 20)
+      escreva ("Você causou ", dado, " de dano no boss")
+      hpboss = hpboss - dado
+     }
+    senao se (proxacao == "x" ou proxacao == "X"){
+      escreva ("Rolando dado... ", "\n")
+      inteiro dado = u.sorteia(1, 20)
+      escreva ("Você recuperou ", dado, " em seu hp")
+      hp = hp + dado
+     }
+    senao se (proxacao == "C" ou proxacao == "c"){
+     escreva ("Esses são os itens disponíveis em seu inventário: \n", inventario)
+     escreva ("\n Qual item quer usar? ")
+     leia (itqvaiusar)
+     se (itqvaiusar == "bomba" ou itqvaiusar == "Bomba"){
+      escreva ("Você causou 50 de dano no boss")
+      hpboss = hpboss - 50
+      inventario[2] = "Vazio"
+     }
+    }
+    }
+    enquanto (hp > 0 ou hpboss > 0)
+  }
+}
